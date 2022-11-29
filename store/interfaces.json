@@ -1,0 +1,6 @@
+{
+  "bullets-diagramation": {
+    "component": "BulletsGroup",
+    "composition": "children"
+  }
+}
