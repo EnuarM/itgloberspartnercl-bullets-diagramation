@@ -1,0 +1,17 @@
+.bullet__item--image,
+.bullet__item {
+  width: 80px;
+  margin-right: 15px;
+}
+
+.bullet__item {
+  margin-right: 15px;
+}
+
+.bullet__item--titleBullet {
+  color: magenta;
+}
+
+.bullet__item--link{
+  text-decoration: none;
+}
