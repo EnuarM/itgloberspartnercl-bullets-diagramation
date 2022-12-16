@@ -1,114 +1,150 @@
-📢 Use this project, [contribute](https://github.com/{OrganizationName}/{AppName}) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+# BULLETS DIAGRAMATION
 
-# APP NAME
+This component allows users organize many bullets in a slider component. User can customize image, title and link on each bullet. 
 
-<!-- DOCS-IGNORE:start -->
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-<!-- DOCS-IGNORE:end -->
+### Button example
 
-Under the app's name, you should explain the topic, giving a **brief description** of its **functionality** in a store when installed.
+![preview](../assets/img/bullets-diagramation.png)
 
-Next, **add media** (either an image of a GIF) with the rendered components, so that users can better understand how the app works in practice. 
+## Configuration
 
-![Media Placeholder](https://user-images.githubusercontent.com/52087100/71204177-42ca4f80-227e-11ea-89e6-e92e65370c69.png)
+### **Step 1** - Basic setup
 
-## Configuration 
+Access the VTEX IO [basic setup guide](https://vtex.io/docs/getting-started/build-stores-with-store-framework/1) and follow all the given steps.
 
-In this section, you first must **add the primary instructions** that will allow users to use the app's blocks in their store, such as:
+By the end of the setup, you should have the VTEX command line interface (Toolbelt) installed along with a developer workspace you can work in.
+
+---
+
+### **Step 2** - Cloning the repository
+
+[Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) this repository to your local files to be able to effectively start working on it.
+
+Then, access the repository's directory using your terminal.
+
+---
+
+### **Step 3** - Edit manifest.json
+
+Go to the manifest.json file and change the following values:
+- Vendor
+- Name
+- Version (If it's different than example)
+- Title 
+- Description
+
+```json
+{
+  "vendor": "CHANGE_ME",
+  "name": "CHANGE_ME",
+  "version": "0.0.1",
+  "title": "YOUR TITLE",
+  "description": "YOUR DESCRIPTION",
+  "builders": {
+    "react": "3.x",
+    "messages": "1.x",
+    "docs": "0.x",
+    "store": "0.x"
+  }
+}
+```
+---
+
+### **Step 4** -Install dependencies
+  We need to access the terminal and go to `react` folder. Now we have to run `Yarn` and install all required dependencies for this component.
+
+---
+
+### **Step 5** - Link this repository to your current project
+
+Then time has come to upload all the changes you made in your local files to the platform. For that, use the `vtex link` command.
+
+If the process runs without any errors, the following message will be displayed: `Sending local change event`. 
+
+This will enable you to see the applied changes in real time, through the account and workspace in which you are working.
+
+---
+
+### **Step 6** - Adding the app on your project
 
 1. Adding the app as a theme dependency in the `manifest.json` file;
+
+```json
+  "dependencies": {
+    "itgloberspartnercl.bullets-diagramation": "0.x"
+  }
+```
+
 2. Declaring the app's main block in a given theme template or inside another block from the theme.
 
-Remember to add a table with all blocks exported by the app and their descriptions. You can verify an example of it on the [Search Result documentation](https://vtex.io/docs/components/all/vtex.search-result@3.56.1/). 
+```json
+{
+  "list-context.bullet-group": {
+    "children": ["slider-layout#bullet-group"],
+    "title": "Mi contexto de lista de Bullets",
+    "props": {
+      "bullets": [
+        {
+          "image": "mi-imagen.png",
+          "titleBullet": "Computadores",
+          "link": {
+            "url": "/"
+          }
+        },
+        {
+          "image": "mi-imagen.png",
+          "titleBullet": "Ropa",
+          "link": {
+            "url": "/"
+          }
+        }
+      ]
+    }
+  }
+}
+```
 
-Next, add the **props table** containing your block's props. 
-
-If the app exports more than one block, create several tables - one for each block. For example:
-
-### `block-1` props
-
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
-
-
-### `block-2` props
-
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
-
-Prop types are: 
-
-- `string` 
-- `enum` 
-- `number` 
-- `boolean` 
-- `object` 
-- `array` 
-
-When documenting a prop whose type is `object` or `array` another prop table will be needed. You can create it following the example below:
-
-- `propName` object:
+### `Bullet` props
 
 | Prop name    | Type            | Description    | Default value                                                                                                                               |
 | ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+| `Image`      | `string`       | Url image         | `" "`        |
+| `TitleBullet`      | `string`       | Title bullet         | `" "`        |
+| `Link`      | `LinkProps`       | Image link         | `" "`        |
 
+### `Link` props
 
-Remember to also use this Configuration section to  **showcase any necessary disclaimer** related to the app and its blocks, such as the different behavior it may display during its configuration. 
+| Prop name    | Type            | Description    | Default value                                                                                                                               |
+| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
+| `url`      | `string`       | Url image         | `" "`        |
+| `attributeNoFollow`      | `boolean`       | Guides the search engine not to track the link of the page indicated by the tag. If true sets rel=noFollow attribute to the link.         | `false`        |
+| `attributeTitle`      | `string`       | Attribute title         | `" "`        |
+| `openNewTab`      | `boolean`       | Whether a new tab on browser will be opened (true) or not (false) .          | `false`        |
+| `newTab`      | `boolean`       | If true opens a new tab when you click on the image.         | `false`        |
 
-## Modus Operandi *(not mandatory)*
+### **Step 7** - Check the app is connected
 
-There are scenarios in which an app can behave differently in a store, according to how it was added to the catalog, for example. It's crucial to go through these **behavioral changes** in this section, allowing users to fully understand the **practical application** of the app in their store.
+By running `vtex list`, you can verify if the app is linked. On your Linked Apps you must have
 
-If you feel compelled to give further details about the app, such as it's **relationship with the VTEX admin**, don't hesitate to use this section. 
+```json
+itgloberspartnercl.whatsapp-button             0.0.1
+```
+
+---
 
 ## Customization
 
-The first thing that should be present in this section is the sentence below, showing users the recipe pertaining to CSS customization in apps:
-
-`In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).`
-
-Thereafter, you should add a single column table with the available CSS handles for the app, like the one below. Note that the Handles must be ordered alphabetically.
-
 | CSS Handles |
 | ----------- | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` |
+| `bullet__item` | 
+| `bullet__item--titleBullet` | 
+| `bullet__item--image` | 
+| `bullet__item--link` | 
 
 
-If there are none, add the following sentence instead:
-
-`No CSS Handles are available yet for the app customization.`
-
-<!-- DOCS-IGNORE:start -->
 
 ## Contributors ✨
 
 Thanks goes to these wonderful people:
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
-
-<!-- DOCS-IGNORE:end -->
-
----- 
-
-Check out some documentation models that are already live: 
-- [Breadcrumb](https://github.com/vtex-apps/breadcrumb)
-- [Image](https://vtex.io/docs/components/general/vtex.store-components/image)
-- [Condition Layout](https://vtex.io/docs/components/all/vtex.condition-layout@1.1.6/)
-- [Add To Cart Button](https://vtex.io/docs/components/content-blocks/vtex.add-to-cart-button@0.9.0/)
-- [Store Form](https://vtex.io/docs/components/all/vtex.store-form@0.3.4/)
+1. Enuar Montaña
